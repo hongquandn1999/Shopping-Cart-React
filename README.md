@@ -6,7 +6,7 @@
 - Feature path: ```/product```
 - Sub-routing: 
 
- # | Path | Pages
+ STT | Path | Pages
 --- | --- | --- 
 1 | /product | Product Search Page
 2 | /product/:productId | Product Detail
