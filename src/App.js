@@ -10,7 +10,7 @@ function App() {
 		<div>
 			<Header />
 			<Switch>
-				<Redirect from='/product' to='/' component={ProductFeature} />
+				<Redirect from='/products' to='/' component={ProductFeature} />
 				<Route path='/' component={ProductFeature} />
 
 				<Route component={NotFound} />
