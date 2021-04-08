@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import productApi from '../../../api/productApi';
+import ProductList from '../components/ProductList';
 import ProductSkeletonList from '../components/ProductSkeletonList';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	right: {
-		flex: '1 1 auto',
+		flex: '1 1 0',
 	},
 }));
 
@@ -31,6 +32,7 @@ function ListPage(props) {
 			try {
 				const { data } = await productApi.getAll({ _page: 1, _limit: 10 });
 				setProductList(data);
+				console.log(data);
 			} catch (error) {
 				console.log(error);
 			}
@@ -48,9 +50,9 @@ function ListPage(props) {
 					<Grid item className={classes.right}>
 						<Paper elevation={0}>
 							{loading ? (
-								<ProductSkeletonList length={8}  />
+								<ProductSkeletonList length={8} />
 							) : (
-								<Typography>Product List</Typography>
+								<ProductList data={productList} />
 							)}
 						</Paper>
 					</Grid>
