@@ -22,7 +22,15 @@ function Product({ product }) {
 				<img src={defaultThumbnail} width='100%' alt={`${product.name}`} />
 			</Box>
 			<Typography variant='body2'>{product.name}</Typography>
-			<Typography variant='body2'>{product.salePrice}</Typography>
+			<Typography variant='body2'>
+				<Box component='span' fontSize='16px' fontWeight='bold' mr={2}>
+					{new Intl.NumberFormat('vi-VN', {
+						style: 'currency',
+						currency: 'VND',
+					}).format(product.salePrice)}
+				</Box>
+				{product.promotionPercent > 0 ? ` -${product.promotionPercent}$` : ''}
+			</Typography>
 		</Box>
 	);
 }
