@@ -1,12 +1,11 @@
-import logo from './logo.svg';
+import { Redirect, Route, Switch } from 'react-router';
 import './App.css';
 import Header from './components/Header';
-import { Redirect, Route, Switch } from 'react-router';
-import ProductFeature from './features/Product';
 import NotFound from './components/NotFound';
+import ProductFeature from './features/Product';
 
 function App() {
-  return (
+	return (
 		<div>
 			<Header />
 			<Switch>
