@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react';
 import productApi from '../../../api/productApi';
 import ProductList from '../components/ProductList';
 import ProductSkeletonList from '../components/ProductSkeletonList';
+import ProductSort from '../components/ProductSort';
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
@@ -43,6 +44,7 @@ function ListPage(props) {
 	const [filters, setFilters] = useState({
 		_page: 1,
 		_limit: 9,
+		_sort: 'salePrice:ASC',
 	});
 	useEffect(() => {
 		(async () => {
@@ -66,6 +68,13 @@ function ListPage(props) {
 		}))
 	}
 
+	const handleSortChange = (newSortValue) => {
+		setFilters((prevFilter) => ({
+			...prevFilter,
+			_sort: newSortValue,
+		}));
+	};
+
 	return (
 		<Box>
 			<Container>
@@ -75,14 +84,22 @@ function ListPage(props) {
 					</Grid>
 					<Grid item className={classes.right}>
 						<Paper elevation={0}>
+							<ProductSort
+								onChange={handleSortChange}
+								currentSort={filters._sort}
+							/>
 							{loading ? (
 								<ProductSkeletonList length={9} />
 							) : (
 								<ProductList data={productList} />
 							)}
 							<Box className={classes.pagination}>
-
-								<Pagination count={Math.ceil(pagination.total / pagination.limit)} page={pagination.page} color='primary' onChange={handlePageChange}/>
+								<Pagination
+									count={Math.ceil(pagination.total / pagination.limit)}
+									page={pagination.page}
+									color='primary'
+									onChange={handlePageChange}
+								/>
 							</Box>
 						</Paper>
 					</Grid>
