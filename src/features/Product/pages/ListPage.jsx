@@ -9,6 +9,7 @@ import {
 import { Pagination } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
 import productApi from '../../../api/productApi';
+import ProductFilter from '../components/ProductFilter';
 import ProductList from '../components/ProductList';
 import ProductSkeletonList from '../components/ProductSkeletonList';
 import ProductSort from '../components/ProductSort';
@@ -75,12 +76,21 @@ function ListPage(props) {
 		}));
 	};
 
+	const handleFilterChange = (newFilters) => {
+		setFilters((prevFilter) => ({
+			...prevFilter,
+			...newFilters,
+		}));
+	};
+
 	return (
 		<Box>
 			<Container>
 				<Grid container spacing={2}>
 					<Grid item className={classes.left}>
-						<Paper elevation={0}>Left Col</Paper>
+						<Paper elevation={0}>
+							<ProductFilter filter={filters} onChange={handleFilterChange} />
+						</Paper>
 					</Grid>
 					<Grid item className={classes.right}>
 						<Paper elevation={0}>
