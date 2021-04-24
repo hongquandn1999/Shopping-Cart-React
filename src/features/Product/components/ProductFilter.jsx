@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 import FilterByCategory from './Filter/FilterByCategory';
 import FilterByPrice from './Filter/FilterByPrice';
+import FilterByService from './Filter/FilterByService';
 
 ProductFilter.propTypes = {
 	filters: PropTypes.object.isRequired,
@@ -19,7 +20,7 @@ function ProductFilter({ filters, onChange }) {
 		onChange(newFilters);
 	};
 
-	const handlePriceChange = (values) => {
+	const handleChange = (values) => {
 		console.log(values);
 		if (onChange) {
 			onChange(values);
@@ -29,7 +30,8 @@ function ProductFilter({ filters, onChange }) {
 	return (
 		<Box>
 			<FilterByCategory onChange={handleCategoryChange} />
-			<FilterByPrice onChange={handlePriceChange} />
+			<FilterByPrice onChange={handleChange} />
+			<FilterByService filters={filters} onChange={handleChange} />
 		</Box>
 	);
 }

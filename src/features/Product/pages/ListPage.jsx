@@ -9,6 +9,7 @@ import {
 import { Pagination } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
 import productApi from '../../../api/productApi';
+import FilterViewer from '../components/FilterViewer';
 import ProductFilter from '../components/ProductFilter';
 import ProductList from '../components/ProductList';
 import ProductSkeletonList from '../components/ProductSkeletonList';
@@ -83,6 +84,10 @@ function ListPage(props) {
 		}));
 	};
 
+	const setNewFilters = (newFilters) => {
+		setFilters(newFilters);
+	};
+
 	return (
 		<Box>
 			<Container>
@@ -98,6 +103,7 @@ function ListPage(props) {
 								onChange={handleSortChange}
 								currentSort={filters._sort}
 							/>
+							<FilterViewer filters={filters} onChange={setNewFilters} />
 							{loading ? (
 								<ProductSkeletonList length={9} />
 							) : (
